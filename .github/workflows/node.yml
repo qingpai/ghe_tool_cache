@@ -1,5 +1,8 @@
-name: Upload Node tool cache
-on: push
+name: Node
+on:
+  push:
+    tags:
+      - 'node'
 jobs:
   node_upload_tool_cache:
     runs-on: ubuntu-22.04
@@ -21,6 +24,6 @@ jobs:
           cd "${{ runner.tool_cache }}"
           tar -czf tool_cache.tar.gz *
       - name: Upload tool cache artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: ${{runner.tool_cache}}/tool_cache.tar.gz
